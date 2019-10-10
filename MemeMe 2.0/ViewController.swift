@@ -49,10 +49,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: Actions
     @IBAction func sharePressed(_ sender: Any) {
         if let image = takeScreenshot() {
-            let activity = UIActivityViewController(activityItems: [image], applicationActivities: [])
+            let activity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             activity.completionWithItemsHandler = {(_, completed, _, _) in
                 if completed {
                     self.save(image)
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
             present(activity, animated: true, completion: nil)
@@ -60,7 +61,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
-       reset()
+       dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cameraPressed(_ sender: Any) {

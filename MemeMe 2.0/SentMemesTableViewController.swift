@@ -8,8 +8,15 @@
 
 import UIKit
 
-class SentMemesTableViewController: UITableViewController {
+extension UIViewController {
+    func present(_ viewController: UIViewController) {
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
+    }
+}
 
+class SentMemesTableViewController: UITableViewController {
+    
     // MARK: - Vars
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
@@ -25,6 +32,12 @@ class SentMemesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -46,6 +59,17 @@ class SentMemesTableViewController: UITableViewController {
         cell.setup(with: memes[indexPath.row])
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showMeme", sender: memes[indexPath.row])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMeme" {
+            let memeDetailsViewController = segue.destination as! MemeDetailsViewController
+            memeDetailsViewController.meme = (sender as! Meme)
+        }
     }
 
     /*
@@ -92,5 +116,10 @@ class SentMemesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func openMemeEditor(_ sender: Any) {
+        let memeEditorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MemeEditorViewController")
+        present(memeEditorViewController)
+    }
 
 }
