@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>This app would like to use camera to personalize the experience for you</string>
+	<string>This app would like to use Media Library to personalize the experience for you</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleName</key>
