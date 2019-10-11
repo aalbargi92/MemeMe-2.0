@@ -1,6 +1,6 @@
 //
-//  ViewController.swift
-//  MemeMe 1.0
+//  MemeEditorViewController.swift.swift
+//  MemeMe 2.0
 //
 //  Created by Abdullah AlBargi on 10/6/19.
 //  Copyright © 2019 Abdullah AlBargi. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate {
+class MemeEditorViewController: UIViewController, UINavigationControllerDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var topTextField: UITextField!
@@ -164,7 +164,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
 
 // MARK: Extenstions
-extension ViewController: UIImagePickerControllerDelegate {
+extension MemeEditorViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         picker.dismiss(animated: true, completion: nil)
@@ -179,7 +179,7 @@ extension ViewController: UIImagePickerControllerDelegate {
     }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension MemeEditorViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         currentTextField = textField
         textField.text = ""
